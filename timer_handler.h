@@ -5,8 +5,8 @@
  * @brief   Application main file
  */
 
-#ifndef TIMER_HANDLER_H
-#define TIMER_HANDLER_H
+#ifndef TIMER_HANDLER_H__
+#define TIMER_HANDLER_H__
 
 #include "bsp.h"
 

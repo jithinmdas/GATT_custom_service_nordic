@@ -334,25 +334,27 @@ ARM Macro Assembler    Page 6
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
-ork --depend=.\arm_startup_nrf51.d -o.\arm_startup_nrf51.o -IE:\workspace\Keil\
-Nordic\GATT_custom_service_nordic\RTE -IE:\workspace\Keil\Nordic\GATT_custom_se
-rvice_nordic\RTE\nRF_BLE\nRF51422_xxAC -IE:\workspace\Keil\Nordic\GATT_custom_s
-ervice_nordic\RTE\nRF_Drivers\nRF51422_xxAC -IE:\workspace\Keil\Nordic\GATT_cus
-tom_service_nordic\RTE\nRF_Libraries\nRF51422_xxAC -IC:\Keil_v5\ARM\PACK\ARM\CM
-SIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_BLE\3.0.0
-\common -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\De
-vice\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\common
- -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\config -IC:\Keil_v
-5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\gpiote -IC:\Keil_v5\ARM\PACK\N
-ordicSemiconductor\nRF_Drivers\3.0.0\hal -IC:\Keil_v5\ARM\PACK\NordicSemiconduc
-tor\nRF_Examples\8.1.1\bsp -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Librar
-ies\3.0.0\button -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\
-timer -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util -IC:\K
-eil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_hand
-ler -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers
- --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --pre
-define="_RTE_ SETA 1" --predefine="NRF51 SETA 1" --list=.\arm_startup_nrf51.lst
- RTE\Device\nRF51422_xxAC\arm_startup_nrf51.s
+ork --depend=.\objects\arm_startup_nrf51.d -o.\objects\arm_startup_nrf51.o -IE:
+\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE -IE:\workspace\Keil\Nordi
+c\GATT_custom_service_nordic\RTE\nRF_BLE\nRF51422_xxAC -IE:\workspace\Keil\Nord
+ic\GATT_custom_service_nordic\RTE\nRF_Drivers\nRF51422_xxAC -IE:\workspace\Keil
+\Nordic\GATT_custom_service_nordic\RTE\nRF_Libraries\nRF51422_xxAC -IC:\Keil_v5
+\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconduct
+or\nRF_BLE\3.0.0\common -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFam
+ilyPack\8.0.3\Device\Include -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Driv
+ers\3.0.0\common -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\co
+nfig -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\gpiote -IC:\Ke
+il_v5\ARM\PACK\NordicSemiconductor\nRF_Drivers\3.0.0\hal -IC:\Keil_v5\ARM\PACK\
+NordicSemiconductor\nRF_Drivers\3.0.0\uart -IC:\Keil_v5\ARM\PACK\NordicSemicond
+uctor\nRF_Examples\8.1.1\bsp -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libr
+aries\3.0.0\button -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.
+0\fifo -IC:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\timer -IC:
+\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util -IC:\Keil_v5\ARM
+\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_handler -IC:\K
+eil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers --predefi
+ne="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --predefine="_R
+TE_ SETA 1" --predefine="NRF51 SETA 1" --list=.\arm_startup_nrf51.lst RTE\Devic
+e\nRF51422_xxAC\arm_startup_nrf51.s
 
 
 
