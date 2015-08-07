@@ -1,0 +1,21 @@
+--cpu Cortex-M0
+".\main.o"
+".\timer_handler.o"
+".\bsp.o"
+".\arm_startup_nrf51.o"
+".\system_nrf51.o"
+".\ble_srv_common.o"
+".\ble_advdata.o"
+".\ble_conn_params.o"
+".\nrf_drv_common.o"
+".\nrf_drv_gpiote.o"
+".\nrf_delay.o"
+".\app_button.o"
+".\app_error.o"
+".\app_timer.o"
+".\nrf_assert.o"
+".\softdevice_handler.o"
+--library_type=microlib --strict --scatter ".\gatt_custom_service_nordic.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\gatt_custom_service_nordic.map" -o .\gatt_custom_service_nordic.axf
