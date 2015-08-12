@@ -20,5 +20,14 @@
 .\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util\app_util.h
 .\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\compiler_abstraction.h
 .\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_handler\ble_stack_handler_types.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_ranges.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_types.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gap.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_l2cap.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_err.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gatt.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gattc.h
+.\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gatts.h
 .\objects\softdevice_handler.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_handler\ant_stack_handler_types.h
 .\objects\softdevice_handler.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_Libraries\nRF51422_xxAC\nrf_assert.h
