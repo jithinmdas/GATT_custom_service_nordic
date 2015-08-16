@@ -9,6 +9,7 @@
 #define TIMER_HANDLER_H__
 
 #include "bsp.h"
+#include "app_timer.h"
 
 #define APP_TIMER_PRESCALER 0
 #define APP_TIMER_MAX_TIMERS (2 + BSP_APP_TIMERS_NUMBER)

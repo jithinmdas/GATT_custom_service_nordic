@@ -5,7 +5,6 @@
  * @brief   Application main file
  */
 
-#include "app_timer.h"
 #include "timer_handler.h"
 
 void timer_init(void)

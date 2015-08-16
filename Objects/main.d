@@ -20,6 +20,8 @@
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\compiler_abstraction.h
 .\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\nrf_error.h
+.\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util\app_util.h
 .\objects\main.o: uart_handler.h
 .\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_Drivers\nRF51422_xxAC\app_uart.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util\app_util_platform.h
@@ -31,7 +33,6 @@
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\nrf_soc.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\nrf_error_soc.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\nrf_error_sdm.h
-.\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util\app_util.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_handler\ble_stack_handler_types.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_ranges.h
@@ -43,3 +44,7 @@
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gattc.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\ble_gatts.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_Common\1.1.3\softdevice_handler\ant_stack_handler_types.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_BLE\3.0.0\ble_advertising\ble_advertising.h
+.\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_BLE\nRF51422_xxAC\ble_advdata.h
+.\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_BLE\nRF51422_xxAC\ble_conn_params.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_BLE\3.0.0\common\ble_srv_common.h
