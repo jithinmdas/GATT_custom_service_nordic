@@ -1,5 +1,6 @@
 --cpu Cortex-M0
 ".\objects\main.o"
+".\objects\ble_custom_service.o"
 ".\objects\timer_handler.o"
 ".\objects\uart_handler.o"
 ".\objects\bsp.o"

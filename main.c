@@ -15,6 +15,7 @@
 #include "ble_gap.h"
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
+#include "ble_custom_service.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0
 #define DEVICE_NAME                     "Custom_Service"
@@ -144,8 +145,18 @@ static void conn_params_error_handler(uint32_t nrf_error)
     APP_ERROR_HANDLER(nrf_error);
 }
 
+/**@brief Function for placing the application in low power state while waiting for events.
+ */
+static void power_manage(void)
+{
+    uint32_t err_code = sd_app_evt_wait();
+    APP_ERROR_CHECK(err_code);
+}
+
 int main(void)
 {
+    uint32_t err_code;
+    
     timer_init();
     uart_init();
     printf("Hello world\n");
@@ -155,8 +166,11 @@ int main(void)
     advertising_init();
     conn_params_init();
     
+    err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
+    APP_ERROR_CHECK(err_code);
+    
     for(;;)
     {
-
+        power_manage();
     }
 }

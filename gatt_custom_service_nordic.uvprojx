@@ -417,6 +417,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>ble_custom_service.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ble_custom_service.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -491,6 +496,12 @@
           <targetInfo name="nRF51422"/>
         </targetInfos>
       </component>
+      <component Cclass="nRF_BLE" Cgroup="BLE_Modules" Csub="ble_advertising" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="ble_advertising">
+        <package name="nRF_BLE" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_BLE/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </component>
       <component Cclass="nRF_BLE" Cgroup="BLE_Modules" Csub="ble_common" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="ble_common">
         <package name="nRF_BLE" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_BLE/" vendor="NordicSemiconductor" version="3.0.0"/>
         <targetInfos>
@@ -557,6 +568,12 @@
           <targetInfo name="nRF51422"/>
         </targetInfos>
       </component>
+      <component Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="pstorage_default">
+        <package name="nRF_Drivers" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </component>
       <component Cclass="nRF_Libraries" Cgroup="app_button" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_button">
         <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
         <targetInfos>
@@ -576,6 +593,12 @@
         </targetInfos>
       </component>
       <component Cclass="nRF_Libraries" Cgroup="app_timer" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_timer_default">
+        <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </component>
+      <component Cclass="nRF_Libraries" Cgroup="app_trace" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_trace_default">
         <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
         <targetInfos>
           <targetInfo name="nRF51422"/>
@@ -665,6 +688,14 @@
           <targetInfo name="nRF51422"/>
         </targetInfos>
       </file>
+      <file attr="config" category="source" name="ble_advertising\ble_advertising.c" version="3.0.0">
+        <instance index="0">RTE\nRF_BLE\nRF51422_xxAC\ble_advertising.c</instance>
+        <component Cclass="nRF_BLE" Cgroup="BLE_Modules" Csub="ble_advertising" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="ble_advertising"/>
+        <package name="nRF_BLE" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_BLE/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
       <file attr="config" category="source" name="common\ble_conn_params.c" version="3.0.0">
         <instance index="0">RTE\nRF_BLE\nRF51422_xxAC\ble_conn_params.c</instance>
         <component Cclass="nRF_BLE" Cgroup="BLE_Modules" Csub="ble_conn_params" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="ble_conn_params"/>
@@ -700,6 +731,30 @@
       <file attr="config" category="header" name="config\nrf_drv_config.h" version="3.0.0">
         <instance index="0">RTE\nRF_Drivers\nRF51422_xxAC\nrf_drv_config.h</instance>
         <component Cclass="nRF_Drivers" Cgroup="nrf_drv_gpiote" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="nrf_drv_gpiote"/>
+        <package name="nRF_Drivers" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="pstorage\pstorage.c" version="3.0.0">
+        <instance index="0">RTE\nRF_Drivers\nRF51422_xxAC\pstorage.c</instance>
+        <component Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="pstorage_default"/>
+        <package name="nRF_Drivers" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="pstorage\pstorage.h" version="3.0.0">
+        <instance index="0">RTE\nRF_Drivers\nRF51422_xxAC\pstorage.h</instance>
+        <component Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="pstorage_default"/>
+        <package name="nRF_Drivers" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="pstorage\config\pstorage_platform.h" version="3.0.0">
+        <instance index="0">RTE\nRF_Drivers\nRF51422_xxAC\pstorage_platform.h</instance>
+        <component Cclass="nRF_Drivers" Cgroup="pstorage" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="pstorage_default"/>
         <package name="nRF_Drivers" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Drivers/" vendor="NordicSemiconductor" version="3.0.0"/>
         <targetInfos>
           <targetInfo name="nRF51422"/>
@@ -776,6 +831,22 @@
       <file attr="config" category="header" name="timer\app_timer.h" version="3.0.0">
         <instance index="0">RTE\nRF_Libraries\nRF51422_xxAC\app_timer.h</instance>
         <component Cclass="nRF_Libraries" Cgroup="app_timer" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_timer_default"/>
+        <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="source" name="trace\app_trace.c" version="3.0.0">
+        <instance index="0">RTE\nRF_Libraries\nRF51422_xxAC\app_trace.c</instance>
+        <component Cclass="nRF_Libraries" Cgroup="app_trace" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_trace_default"/>
+        <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
+        <targetInfos>
+          <targetInfo name="nRF51422"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" name="trace\app_trace.h" version="3.0.0">
+        <instance index="0">RTE\nRF_Libraries\nRF51422_xxAC\app_trace.h</instance>
+        <component Cclass="nRF_Libraries" Cgroup="app_trace" Cvariant="default" Cvendor="NordicSemiconductor" Cversion="3.0.0" condition="app_trace_default"/>
         <package name="nRF_Libraries" schemaVersion="1.2" supportContact="http://www.nordicsemi.com/About-us/Contact-us" url="http://developer.nordicsemi.com/nRF51_SDK/pieces/nRF_Libraries/" vendor="NordicSemiconductor" version="3.0.0"/>
         <targetInfos>
           <targetInfo name="nRF51422"/>
