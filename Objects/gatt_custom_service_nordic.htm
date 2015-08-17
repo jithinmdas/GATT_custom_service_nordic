@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\gatt_custom_service_nordic.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\gatt_custom_service_nordic.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sun Aug 16 21:51:18 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Mon Aug 17 21:57:05 2015
 <BR><P>
 <H3>Maximum Stack Usage =        352 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -354,9 +354,9 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_stack_init
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;advertising_init
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;conn_params_error_handler
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_timeouts_check
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intern_softdevice_events_execute
 <LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SWI2_IRQHandler
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_timeouts_check
 </UL>
 
 <P><STRONG><a name="[44]"></a>app_fifo_get</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, app_fifo.o(i.app_fifo_get))
@@ -688,11 +688,6 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uuid_list_encode
 </UL>
 
-<P><STRONG><a name="[25]"></a>update_timeout_handler</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, ble_conn_params.o(i.update_timeout_handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = update_timeout_handler
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> ble_conn_params.o(i.ble_conn_params_init)
-</UL>
 <P><STRONG><a name="[5e]"></a>ble_advertising_peer_address_clear</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, ble_advertising.o(i.ble_advertising_peer_address_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ble_advertising_peer_address_clear
 </UL>
@@ -710,6 +705,11 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ble_advertising_start
 </UL>
 
+<P><STRONG><a name="[25]"></a>update_timeout_handler</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, ble_conn_params.o(i.update_timeout_handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = update_timeout_handler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> ble_conn_params.o(i.ble_conn_params_init)
+</UL>
 <P><STRONG><a name="[71]"></a>channel_free</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, nrf_drv_gpiote.o(i.channel_free))
 <BR><BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_gpiote_init
 </UL>

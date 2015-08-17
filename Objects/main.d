@@ -48,3 +48,4 @@
 .\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_BLE\nRF51422_xxAC\ble_advdata.h
 .\objects\main.o: E:\workspace\Keil\Nordic\GATT_custom_service_nordic\RTE\nRF_BLE\nRF51422_xxAC\ble_conn_params.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_BLE\3.0.0\common\ble_srv_common.h
+.\objects\main.o: ble_custom_service.h
