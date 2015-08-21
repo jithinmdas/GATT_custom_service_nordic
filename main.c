@@ -16,6 +16,7 @@
 #include "ble_advertising.h"
 #include "ble_conn_params.h"
 #include "ble_custom_service.h"
+#include "nrf_delay.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0
 #define DEVICE_NAME                     "Custom_Service"
@@ -32,11 +33,14 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000, APP_TIMER_PRESCALER) 
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3  
 
+static ble_cus_t                        m_cus;   
+
 void scheduler_init(void);
 static void ble_evt_handler(ble_evt_t * p_ble_evt);
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 static void on_conn_params_evt(ble_conn_params_evt_t * p_evt);
 static void conn_params_error_handler(uint32_t nrf_error);
+static void cus_data_handler(ble_cus_t * p_cus, uint8_t * p_data, uint16_t length);
 
 void ble_stack_init()
 {
@@ -90,7 +94,19 @@ void gap_params_init()
 
 void services_init(void)
 {
+    uint32_t       err_code;
+    ble_cus_init_t cus_init;
+    
+    memset(&cus_init, 0, sizeof(cus_init));
 
+    cus_init.data_handler = cus_data_handler;
+    
+    err_code = ble_cus_init(&m_cus, &cus_init);
+    APP_ERROR_CHECK(err_code);
+}
+
+static void cus_data_handler(ble_cus_t * p_cus, uint8_t * p_data, uint16_t length)
+{
 }
 
 void advertising_init(void)
@@ -153,6 +169,25 @@ static void power_manage(void)
     APP_ERROR_CHECK(err_code);
 }
 
+void data_send()
+{
+    static uint8_t data_array[BLE_CUS_MAX_DATA_LEN] = "jithin\n";
+    static uint8_t index = 6;
+    uint32_t       err_code;
+    
+    index++;
+    if ((data_array[index - 1] == '\n') || (index >= (BLE_CUS_MAX_DATA_LEN)))
+    {
+        err_code = ble_cus_string_send(&m_cus, data_array, index);
+        if (err_code != NRF_ERROR_INVALID_STATE)
+        {
+            APP_ERROR_CHECK(err_code);
+        }
+        
+        index = 0;
+    }
+}
+
 int main(void)
 {
     uint32_t err_code;
@@ -172,5 +207,7 @@ int main(void)
     for(;;)
     {
         power_manage();
+        data_send();
+        nrf_delay_ms(100);
     }
 }

@@ -11,5 +11,5 @@
 .\objects\app_error.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\8.0.3\Device\Include\compiler_abstraction.h
 .\objects\app_error.o: RTE\nRF_Libraries\nRF51422_xxAC\app_error.h
 .\objects\app_error.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\objects\app_error.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.1\headers\nrf_error.h
-.\objects\app_error.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.0\util\nordic_common.h
+.\objects\app_error.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_SoftDevice_S110\8.0.2\headers\nrf_error.h
+.\objects\app_error.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.1\util\nordic_common.h
