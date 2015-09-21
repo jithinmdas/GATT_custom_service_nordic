@@ -63,7 +63,7 @@ void ble_stack_init()
 
 static void ble_evt_handler(ble_evt_t * p_ble_evt)
 {
-    
+    ble_conn_params_on_ble_evt(p_ble_evt);
 }
 
 /**@brief Function for the GAP initialization.
@@ -132,6 +132,7 @@ void advertising_init(void)
 
 static void on_adv_evt(ble_adv_evt_t ble_adv_evt)
 {
+    
 }
 
 static void conn_params_init()
@@ -172,19 +173,14 @@ static void power_manage(void)
 void data_send()
 {
     static uint8_t data_array[BLE_CUS_MAX_DATA_LEN] = "jithin\n";
-    static uint8_t index = 6;
+    static uint8_t index = 5;
     uint32_t       err_code;
     
-    index++;
-    if ((data_array[index - 1] == '\n') || (index >= (BLE_CUS_MAX_DATA_LEN)))
+    err_code = ble_cus_string_send(&m_cus, data_array, strlen((char*)data_array));
+    printf("%d\n", err_code);
+    if (err_code != NRF_ERROR_INVALID_STATE)
     {
-        err_code = ble_cus_string_send(&m_cus, data_array, index);
-        if (err_code != NRF_ERROR_INVALID_STATE)
-        {
-            APP_ERROR_CHECK(err_code);
-        }
-        
-        index = 0;
+        APP_ERROR_CHECK(err_code);
     }
 }
 

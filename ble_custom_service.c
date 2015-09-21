@@ -2,6 +2,7 @@
 #include "ble_custom_service.h"
 #include "nordic_common.h"
 #include <string.h>
+#include <stdio.h>
 
 #define BLE_UUID_CUS_TX_CHARACTERISTIC 0x0002                      /**< The UUID of the TX Characteristic. */
 #define BLE_UUID_CUS_RX_CHARACTERISTIC 0x0003                      /**< The UUID of the RX Characteristic. */
@@ -140,7 +141,7 @@ static uint32_t tx_char_add(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init
     return sd_ble_gatts_characteristic_add(p_cus->service_handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &p_cus->cus_send_handles);
+                                           &p_cus->cus_recv_handles);
 }
 
 void ble_cus_on_ble_evt(ble_cus_t * p_cus, ble_evt_t * p_ble_evt)
@@ -174,7 +175,7 @@ uint32_t ble_cus_init(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init)
 {
     uint32_t      err_code;
     ble_uuid_t    ble_uuid;
-    ble_uuid128_t nus_base_uuid = CUS_BASE_UUID;
+    ble_uuid128_t cus_base_uuid = CUS_BASE_UUID;
 
     if ((p_cus == NULL) || (p_cus_init == NULL))
     {
@@ -188,7 +189,7 @@ uint32_t ble_cus_init(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init)
 
     /**@snippet [Adding proprietary Service to S110 SoftDevice] */
     // Add a custom base UUID.
-    err_code = sd_ble_uuid_vs_add(&nus_base_uuid, &p_cus->uuid_type);
+    err_code = sd_ble_uuid_vs_add(&cus_base_uuid, &p_cus->uuid_type);
     if (err_code != NRF_SUCCESS)
     {
         return err_code;
@@ -236,6 +237,7 @@ uint32_t ble_cus_string_send(ble_cus_t * p_cus, uint8_t * p_string, uint16_t len
 
     if ((p_cus->conn_handle == BLE_CONN_HANDLE_INVALID) || (!p_cus->is_notification_enabled))
     {
+        printf("%d,%d\n", (p_cus->conn_handle == BLE_CONN_HANDLE_INVALID), (!p_cus->is_notification_enabled));
         return NRF_ERROR_INVALID_STATE;
     }
 

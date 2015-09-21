@@ -18,3 +18,4 @@
 .\objects\ble_custom_service.o: ble_custom_service.h
 .\objects\ble_custom_service.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_Libraries\3.0.1\util\nordic_common.h
 .\objects\ble_custom_service.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\ble_custom_service.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
