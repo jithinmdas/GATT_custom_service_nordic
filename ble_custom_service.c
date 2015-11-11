@@ -26,9 +26,12 @@ static void on_disconnect(ble_cus_t * p_cus, ble_evt_t * p_ble_evt)
 static void on_write(ble_cus_t * p_cus, ble_evt_t * p_ble_evt)
 {
     ble_gatts_evt_write_t * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+        
+    printf("on write = %d, %d\n", p_evt_write->handle, p_cus->rx_handles.cccd_handle);
     
-    if((p_evt_write->handle == p_cus->cus_recv_handles.cccd_handle) && (p_evt_write->data))
+    if((p_evt_write->handle == p_cus->rx_handles.cccd_handle) && (p_evt_write->len == 2))
     {
+        
         if(ble_srv_is_notification_enabled(p_evt_write->data))
         {
             p_cus->is_notification_enabled = true;
@@ -38,7 +41,7 @@ static void on_write(ble_cus_t * p_cus, ble_evt_t * p_ble_evt)
             p_cus->is_notification_enabled = false;
         }
     }
-    else if((p_evt_write->handle == p_cus->cus_send_handles.value_handle) && (p_cus->data_handler != NULL))
+    else if((p_evt_write->handle == p_cus->tx_handles.value_handle) && (p_cus->data_handler != NULL))
     {
         p_cus->data_handler(p_cus, p_evt_write->data, p_evt_write->len);
     }
@@ -96,7 +99,7 @@ static uint32_t rx_char_add(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init
     return sd_ble_gatts_characteristic_add(p_cus->service_handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &p_cus->cus_recv_handles);
+                                           &p_cus->rx_handles);
     /**@snippet [Adding proprietary characteristic to S110 SoftDevice] */
 }
 
@@ -141,7 +144,7 @@ static uint32_t tx_char_add(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init
     return sd_ble_gatts_characteristic_add(p_cus->service_handle,
                                            &char_md,
                                            &attr_char_value,
-                                           &p_cus->cus_recv_handles);
+                                           &p_cus->tx_handles);
 }
 
 void ble_cus_on_ble_evt(ble_cus_t * p_cus, ble_evt_t * p_ble_evt)
@@ -237,7 +240,6 @@ uint32_t ble_cus_string_send(ble_cus_t * p_cus, uint8_t * p_string, uint16_t len
 
     if ((p_cus->conn_handle == BLE_CONN_HANDLE_INVALID) || (!p_cus->is_notification_enabled))
     {
-        printf("%d,%d\n", (p_cus->conn_handle == BLE_CONN_HANDLE_INVALID), (!p_cus->is_notification_enabled));
         return NRF_ERROR_INVALID_STATE;
     }
 
@@ -248,7 +250,7 @@ uint32_t ble_cus_string_send(ble_cus_t * p_cus, uint8_t * p_string, uint16_t len
 
     memset(&hvx_params, 0, sizeof(hvx_params));
 
-    hvx_params.handle = p_cus->cus_recv_handles.value_handle;
+    hvx_params.handle = p_cus->rx_handles.value_handle;
     hvx_params.p_data = p_string;
     hvx_params.p_len  = &length;
     hvx_params.type   = BLE_GATT_HVX_NOTIFICATION;

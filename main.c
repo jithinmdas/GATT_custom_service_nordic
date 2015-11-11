@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "timer_handler.h"
-#include "uart_handler.h"
 #include "nordic_common.h"
 #include "softdevice_handler.h"
 #include "ble_gap.h"
@@ -17,6 +16,7 @@
 #include "ble_conn_params.h"
 #include "ble_custom_service.h"
 #include "nrf_delay.h"
+#include "app_uart.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0
 #define DEVICE_NAME                     "Custom_Service"
@@ -33,7 +33,16 @@
 #define NEXT_CONN_PARAMS_UPDATE_DELAY   APP_TIMER_TICKS(30000, APP_TIMER_PRESCALER) 
 #define MAX_CONN_PARAMS_UPDATE_COUNT    3  
 
+#define RX_PIN_NUMBER  11
+#define TX_PIN_NUMBER  9
+#define CTS_PIN_NUMBER 10
+#define RTS_PIN_NUMBER 8
+
+#define UART_TX_BUF_SIZE                256
+#define UART_RX_BUF_SIZE                256
+
 static ble_cus_t                        m_cus;   
+static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;
 
 void scheduler_init(void);
 static void ble_evt_handler(ble_evt_t * p_ble_evt);
@@ -41,6 +50,8 @@ static void on_adv_evt(ble_adv_evt_t ble_adv_evt);
 static void on_conn_params_evt(ble_conn_params_evt_t * p_evt);
 static void conn_params_error_handler(uint32_t nrf_error);
 static void cus_data_handler(ble_cus_t * p_cus, uint8_t * p_data, uint16_t length);
+static void on_ble_evt(ble_evt_t * p_ble_evt);
+void uart_evt_handler(app_uart_evt_t * p_event);
 
 void ble_stack_init()
 {
@@ -64,6 +75,45 @@ void ble_stack_init()
 static void ble_evt_handler(ble_evt_t * p_ble_evt)
 {
     ble_conn_params_on_ble_evt(p_ble_evt);
+    ble_cus_on_ble_evt(&m_cus, p_ble_evt);
+    on_ble_evt(p_ble_evt);
+    ble_advertising_on_ble_evt(p_ble_evt);
+}
+
+/**@brief Function for the Application's S110 SoftDevice event handler.
+ *
+ * @param[in] p_ble_evt S110 SoftDevice event.
+ */
+static void on_ble_evt(ble_evt_t * p_ble_evt)
+{
+    uint32_t    err_code;
+    
+    switch (p_ble_evt->header.evt_id)
+    {
+        case BLE_GAP_EVT_CONNECTED:
+            m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
+            break;
+            
+        case BLE_GAP_EVT_DISCONNECTED:
+            m_conn_handle = BLE_CONN_HANDLE_INVALID;
+            break;
+
+        case BLE_GAP_EVT_SEC_PARAMS_REQUEST:
+            // Pairing not supported
+            err_code = sd_ble_gap_sec_params_reply(m_conn_handle, BLE_GAP_SEC_STATUS_PAIRING_NOT_SUPP, NULL, NULL);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        case BLE_GATTS_EVT_SYS_ATTR_MISSING:
+            // No system attributes have been stored.
+            err_code = sd_ble_gatts_sys_attr_set(m_conn_handle, NULL, 0, 0);
+            APP_ERROR_CHECK(err_code);
+            break;
+
+        default:
+            // No implementation needed.
+            break;
+    }
 }
 
 /**@brief Function for the GAP initialization.
@@ -142,12 +192,12 @@ static void conn_params_init()
     
     conn_params.p_conn_params                   = NULL;
     conn_params.first_conn_params_update_delay  = FIRST_CONN_PARAMS_UPDATE_DELAY;
-    conn_params.max_conn_params_update_count    = MAX_CONN_PARAMS_UPDATE_COUNT;
     conn_params.next_conn_params_update_delay   = NEXT_CONN_PARAMS_UPDATE_DELAY;
-    conn_params.disconnect_on_fail              = false;
-    conn_params.error_handler                   = conn_params_error_handler;
-    conn_params.evt_handler                     = on_conn_params_evt;
+    conn_params.max_conn_params_update_count    = MAX_CONN_PARAMS_UPDATE_COUNT;
     conn_params.start_on_notify_cccd_handle     = BLE_GATT_HANDLE_INVALID;
+    conn_params.disconnect_on_fail              = false;
+    conn_params.evt_handler                     = on_conn_params_evt;
+    conn_params.error_handler                   = conn_params_error_handler;    
     
     err_code = ble_conn_params_init(&conn_params);
     APP_ERROR_CHECK(err_code);
@@ -172,15 +222,76 @@ static void power_manage(void)
 
 void data_send()
 {
-    static uint8_t data_array[BLE_CUS_MAX_DATA_LEN] = "jithin\n";
+    static uint8_t data_array[BLE_CUS_MAX_DATA_LEN] = "j\n";
     static uint8_t index = 5;
     uint32_t       err_code;
     
-    err_code = ble_cus_string_send(&m_cus, data_array, strlen((char*)data_array));
-    printf("%d\n", err_code);
+    err_code = ble_cus_string_send(&m_cus, data_array, 2);
+//    printf("string send = %d\n", err_code);
     if (err_code != NRF_ERROR_INVALID_STATE)
     {
         APP_ERROR_CHECK(err_code);
+    }
+}
+
+void uart_init(void)
+{
+    uint32_t err_code;
+    const app_uart_comm_params_t comm_params = {
+        RX_PIN_NUMBER,
+        TX_PIN_NUMBER,
+        RTS_PIN_NUMBER,
+        CTS_PIN_NUMBER,
+        APP_UART_FLOW_CONTROL_DISABLED,
+        false,
+        UART_BAUDRATE_BAUDRATE_Baud38400
+    };
+    
+    APP_UART_FIFO_INIT( &comm_params,
+                        UART_RX_BUF_SIZE,
+                        UART_TX_BUF_SIZE,
+                        uart_evt_handler,
+                        APP_IRQ_PRIORITY_LOW,
+                        err_code );
+    APP_ERROR_CHECK(err_code);
+}
+
+void uart_evt_handler(app_uart_evt_t * p_event)
+{
+    
+    static uint8_t data_array[BLE_CUS_MAX_DATA_LEN];
+    static uint8_t index = 0;
+    uint32_t       err_code;
+
+    switch (p_event->evt_type)
+    {
+        case APP_UART_DATA_READY:
+            UNUSED_VARIABLE(app_uart_get(&data_array[index]));
+            index++;
+
+            if ((data_array[index - 1] == '\n') || (index >= (BLE_CUS_MAX_DATA_LEN)))
+            {
+                err_code = ble_cus_string_send(&m_cus, data_array, index);
+                if (err_code != NRF_ERROR_INVALID_STATE)
+                {
+                    APP_ERROR_CHECK(err_code);
+                }
+                
+                index = 0;
+            }
+            printf("%s\n", (char*)data_array);
+            break;
+
+        case APP_UART_COMMUNICATION_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_communication);
+            break;
+
+        case APP_UART_FIFO_ERROR:
+            APP_ERROR_HANDLER(p_event->data.error_code);
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -202,8 +313,9 @@ int main(void)
     
     for(;;)
     {
-        power_manage();
-        data_send();
-        nrf_delay_ms(100);
+//        power_manage();
+//        data_send();
+//        printf("cus init = %d,%d\n", ((&m_cus)->conn_handle == BLE_CONN_HANDLE_INVALID), (!(&m_cus)->is_notification_enabled));        
+//        nrf_delay_ms(100);
     }
 }

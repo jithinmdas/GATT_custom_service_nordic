@@ -20,8 +20,8 @@ struct ble_cus_s
 {
     uint8_t                  uuid_type;               
     uint16_t                 service_handle;          
-    ble_gatts_char_handles_t cus_send_handles;              
-    ble_gatts_char_handles_t cus_recv_handles;              
+    ble_gatts_char_handles_t tx_handles;              
+    ble_gatts_char_handles_t rx_handles;              
     uint16_t                 conn_handle;             
     bool                     is_notification_enabled; 
     ble_cus_data_handler_t   data_handler;            
@@ -30,3 +30,4 @@ struct ble_cus_s
 static void on_connect(ble_cus_t * p_cus, ble_evt_t * p_ble_evt);
 uint32_t ble_cus_init(ble_cus_t * p_cus, const ble_cus_init_t * p_cus_init);
 uint32_t ble_cus_string_send(ble_cus_t * p_cus, uint8_t * p_string, uint16_t length);
+void ble_cus_on_ble_evt(ble_cus_t * p_cus, ble_evt_t * p_ble_evt);
